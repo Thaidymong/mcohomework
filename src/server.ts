@@ -1,9 +1,16 @@
 import  express,{Request, Response} from "express";
 import * as pgk from "package.json";
-import { knx } from "./connections/CreateKnexConnections";
-import {GetAllArticle,GetArticleById,CreateArticles,DeleteArticles,UpadteArticles} from "./Controllers/GetAllArticles";
 import bodyParser from "body-parser";
-import { CreateCategory, DeleteCategory, GetAllCategory, GetCategoryById, UpadteCategory } from "./Controllers/GetAllcategory";
+import { DeleteCategory } from "./Controllers/Categories/DeleteCategory";
+import { UpadteCategory } from "./Controllers/Categories/UpadteCategory";
+import { CreateCategory } from "./Controllers/Categories/CreateCategory";
+import { GetCategoryById } from "./Controllers/Categories/GetCategoryById";
+import { GetAllCategory } from "./Controllers/Categories/GetAllCategory";
+import { DeleteArticles } from "./Controllers/Articles/DeleteArticles";
+import { UpadteArticles } from "./Controllers/Articles/UpadteArticles";
+import { GetArticleById } from "./Controllers/Articles/GetArticleById";
+import { CreateArticles } from "./Controllers/Articles/CreateArticles";
+import { GetAllArticles } from "./Controllers/Articles/GetAllArticles";
 
 const app = express();
 app.use("/server",(_req: Request, res: Response)=>{
@@ -16,7 +23,7 @@ app.use("/server",(_req: Request, res: Response)=>{
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 
-app.get("/articles",GetAllArticle);
+app.get("/articles",GetAllArticles);
 app.get("/articles/:id",GetArticleById);
 app.post("/articles/create",CreateArticles);
 app.patch("/articles/edit/:id",UpadteArticles);
